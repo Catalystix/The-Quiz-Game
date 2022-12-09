@@ -1,0 +1,49 @@
+* {
+    box-sizing: border-box;
+}
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display&family=Indie+Flower&family=Rajdhani&display=swap');
+
+body {
+    font-family: 'Indie Flower', cursive;
+    margin: 2px; 
+    padding: auto;
+    background-color: rgb(252, 250, 250);
+    color: rgb(5, 0, 0);
+}
+
+#start {
+    text-decoration: none;
+    border-radius: 60px;
+    background-image:radial-gradient(#f70000 0%, #c73900 100%);
+    color:white;
+}
+.startdiv{
+    display: flex;
+    justify-content: space-around;
+}
+
+header {
+   font-family: 'Big Shoulders Display', cursive;
+   display: flex;
+   justify-content: space-around;
+}
+h2 {
+    display: flex;
+    justify-content: space-around;
+}
+
+section {
+    display: flex;
+    justify-content: space-around;
+}
+.high {
+    display: flex;
+    justify-content: center;
+}
+#answers {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+
+}
