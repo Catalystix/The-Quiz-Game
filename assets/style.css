@@ -47,3 +47,7 @@ section {
     align-items: center;
 
 }
+#quizSection {
+    display: flex;
+    justify-content: space-around;
+}

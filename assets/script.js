@@ -41,34 +41,43 @@ var questions = [
     }
 ]
 console.log(questions);
+
+function restartQuiz() {
+    startButton.innerHTML = 'Restart Quiz';
+    location.reload();
+    
+}
+
 function startQuestions() {
+    
     myAnswer.innerHTML = '' ; //not working for some reason??
     questions.innerHTML = '' ;  //not working for some reason??
     var end = questions.length - 1 
     if (currentQuestion > end) { 
             gameover();
-
+        return;
     };
-    
-          console.log(quizSection);
+         console.log(quizSection);
           // loops through the questions and pulls the opjects of the array
     // while (i = 0; i <= questions.length; i++) {
         var newQuestion = questions[currentQuestion].Q;
         var theAnswers = questions[currentQuestion].A;
         clickedAnswers(theAnswers)
-        quizSection.innerHTML = newQuestion
+        quizSection.innerHTML = newQuestion 
     // }    
 } // need to create buttons to pop up with questions
 function clickedAnswers (answers) {
     console.log(answers);
+    document.getElementById('answers').innerHTML = "";
     for (var j = 0; j < answers.length; j++) {
         var button = document.createElement('button');
         button.textContent = answers[j];
         console.log(j)
-        
-        myAnswer.addEventListener('click', checkAnswers)
         document.querySelector('#answers').appendChild(button);
-        console.log(button)
+        button.className = 'answerButton';
+        button.addEventListener('click', checkAnswers)
+        
+        console.log(myAnswer);
     }
     console.log(j);
 }   
@@ -77,14 +86,19 @@ function clickedAnswers (answers) {
     // how do we check the answers if correct 
 function checkAnswers(event) {
     var guess = event.target.textContent
-    if (myAnswer === correct)
+    var correct = questions[currentQuestion].correct 
+    if (guess === correct)
     score++;
     else {
         timeLeft = timeLeft - 5;
+        timeRemaining.textContent = timeLeft;
     }
-      //  make if statement to check the answer correct or incorrect
-   startQuestions()
     currentQuestion++;
+      //  make if statement to check the answer correct or incorrect
+   startQuestions();
+
+  
+    
 //   if ()  [currentQuestion].correct {  // i know i need to target this object within the array
 // // if question is wrong subract from timer and this will attach to the score at the end. 
 //     var correctAnswer = true; {
@@ -102,13 +116,15 @@ function gameover() {
     clearInterval(timer); // stops timer at 0
     var userName = prompt('Enter Your Name')
     // timeRemaining(prompt) = 'Enter Your Name';
-    var name = document.createElement(userName);
+    var name = document.createElement('p');
     name.textContent = userName;
     document.querySelector('.high').textContent += userName;                //not working for some reason??
     // var score = document.createElement(newScore); // not appending child? or do i try innerHTML?
     // score.textContent = newScore;
     var newScore = ' ' + timeLeft;
     document.querySelector('.high').textContent += newScore;
+    localStorage.setItem('highScore', userName + newScore);
+    document.getElementById('answers').innerHTML = "";
 
 }
 function startTimer() {
@@ -123,12 +139,24 @@ function startTimer() {
 
 }
 
-
 startButton.addEventListener('click', function() {
     startTimer();
     startQuestions();
 
 });
+
+var highScoreButton = document.createElement('button');
+highScoreButton.addEventListener('click', function() {
+getHighScores();
+}); 
+
+function getHighScores() {
+   var scoreButton = document.querySelector('#highScoreText');
+   var highScore = localStorage.getItem('highScore');
+   scoreButton.textContent = highScore;
+   button.textContent = 'View Scores';
+   
+};
 
 // var element = event.target;
 
