@@ -118,14 +118,22 @@ function gameover() {
     // timeRemaining(prompt) = 'Enter Your Name';
     var name = document.createElement('p');
     name.textContent = userName;
-    document.querySelector('.high').textContent += userName;                //not working for some reason??
+    var highscoretext = document.querySelector('#highScoreText');
+    // document.querySelector('.high').textContent += userName;                //not working for some reason??
     // var score = document.createElement(newScore); // not appending child? or do i try innerHTML?
     // score.textContent = newScore;
+    highscoretext.textContent += userName;
     var newScore = ' ' + timeLeft;
-    document.querySelector('.high').textContent += newScore;
-    localStorage.setItem('highScore', userName + newScore);
+    highscoretext.textContent += newScore;
+    // document.querySelector('.high').textContent += newScore;
+    
+    var highScore = JSON.parse(localStorage.getItem('highScore'));   // pushing stored items into the array to be pulled 130-135.
+    if (highScore == null) {
+        highScore = []
+    }
+    highScore.push(userName + newScore)
+    localStorage.setItem('highScore', JSON.stringify(highScore));
     document.getElementById('answers').innerHTML = "";
-
 }
 function startTimer() {
     timer = setInterval(function () {
@@ -145,16 +153,25 @@ startButton.addEventListener('click', function() {
 
 });
 
-var highScoreButton = document.createElement('button');
-highScoreButton.addEventListener('click', function() {
+var scoreButton = document.querySelector('#highScores');
+scoreButton.addEventListener('click', function() {
 getHighScores();
 }); 
 
+
 function getHighScores() {
-   var scoreButton = document.querySelector('#highScoreText');
-   var highScore = localStorage.getItem('highScore');
-   scoreButton.textContent = highScore;
-   button.textContent = 'View Scores';
+   console.log('weeee', 'getHighScores')
+   var display = document.querySelector('#display');
+   var highScore = JSON.parse(localStorage.getItem('highScore'))
+   display.innerHTML = '';
+
+   for (var i = 0; i < highScore.length; i++) {
+    // display.textContent = highScore;
+    var listOfScores = document.createElement('p');
+    listOfScores.textContent = highScore[i];
+    display.append(listOfScores);
+
+   }
    
 };
 
