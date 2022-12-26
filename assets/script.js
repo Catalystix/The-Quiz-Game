@@ -12,46 +12,56 @@ var timeLeft = 30;
 var pointsLost = 5;
 var currentQuestion = 0;
 var questions = [
-    { Q: 'What is the name for the Jewish New Year?',
+    { Q: 'Which of the following keywords is used to define a variable in Javascript?',
     A: [
-            'Hanukkah',
-            'Yom Kippur',
-            'Kwanza',
-            'Rosh Hashanah',
+            'var',
+            'let',
+            'Both A and B',
+            'None of the above',
         ],
-        correct: "Hanukkah"
+        correct: "Both A and B"
     },
-    { Q: 'How many blue stripes are there on the U.S. flag?',
+    { Q: 'Which of the following methods is used to access HTML elements using Javascript?',
     A: [ 
-        '6',
-        '7',
-        '13',
-        '0',
+        'getElementById()',
+        'getElementsByClassName()',
+        'Both A and B',
+        'None of the Above',
         ],
-        correct: '13'
+        correct: 'Both A and B'
     },
-    { Q: 'Which planet is the hottest?',
+    { Q: 'Which of the following methods can be used to display data in some form using Javascript?',
     A: [
-        'Venus',
-        'Saturn',
-        'Mercury',
-        'Mars',
+        'document.write()',
+        'console.log()',
+        'window.alert()',
+        'All of the above',
     ],
-        correct: 'Mercury'
+        correct: 'All of the above'
+    }, 
+    { Q: 'When an operators value is NULL, the typeof returned by the unary operator is:',
+    A: [
+        'Boolean',
+        'Undefined',
+        'Object',
+        'Integer',
+    ],
+        correct: 'Object'
     }
 ]
 console.log(questions);
 
-function restartQuiz() {
-    startButton.innerHTML = 'Restart Quiz';
-    location.reload();
+// function restartQuiz() {
+//     startTimer();
+//     startQuestions();
+
     
-}
+// }
 
 function startQuestions() {
     
-    myAnswer.innerHTML = '' ; //not working for some reason??
-    questions.innerHTML = '' ;  //not working for some reason??
+    myAnswer.innerHTML = '' ; //not working for some reason?? ** fixed!
+    questions.innerHTML = '' ;  //not working for some reason?? ** fixed!
     var end = questions.length - 1 
     if (currentQuestion > end) { 
             gameover();
@@ -150,6 +160,7 @@ function startTimer() {
 startButton.addEventListener('click', function() {
     startTimer();
     startQuestions();
+   
 
 });
 
@@ -170,10 +181,9 @@ function getHighScores() {
     var listOfScores = document.createElement('p');
     listOfScores.textContent = highScore[i];
     display.append(listOfScores);
-
    }
-   
-};
+   };
+
 
 // var element = event.target;
 
