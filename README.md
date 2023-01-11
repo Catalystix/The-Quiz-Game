@@ -32,6 +32,4 @@ https://github.com/Catalystix/The-Quiz-Game
 
 https://catalystix.github.io/The-Quiz-Game/
 
-[Alt text][def]
-
-[def]: assets/images/quiz%20SC.PNG
+![Alt text](./assets/quiz%20SC.PNG)
